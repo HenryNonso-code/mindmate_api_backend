@@ -1,23 +1,91 @@
-# 🔹 Python bytecode and compiled files
-__pycache__/
-*.pyc
-*.pyo
-*.py[cod]
+# ======================
+# ✅ Flutter-related
+# ======================
+# Dart
+.dart_tool/
+.packages
+.flutter-plugins
+.flutter-plugins-dependencies
+.melos_tool/
+generated_plugin_registrant.dart
 
-# 🔹 Editor swap files
-*.swp
+# Flutter build outputs
+build/
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+ios/ServiceDefinitions.json
 
-# 🔹 Environment files (secrets)
+# Flutter environment
 .env
 
-# 🔹 OS/misc cleanup artifacts
-del
-rmdir
+# iOS
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/App.framework
+ios/Flutter/engine/
 
-# 🔹 Deployment and dev artifacts
+# Android
+android/.gradle/
+android/.idea/
+android/local.properties
+android/app/debug
+android/app/profile
+android/app/release
+*.iml
+
+# Web
+web/.dart_tool/
+web/.firebase/
+
+# ======================
+# ✅ Python backend
+# ======================
+__pycache__/
+*.py[cod]
+*.pyo
+*.swp
+*.bak
+*.log
+
+# Python virtual environment
+venv/
+env/
+ENV/
+
+# Secret / config
+.env
+.env.*
+
+# IDE/editor-specific
+.vscode/
+.idea/
+
+# Backup & temp
 backup_files/
 dev_tools/
+*.tmp
+*.temp
+*.old
 
-# 🔹 IDE/editor-specific settings
-.vscode/
-*.log
+# Executables & binaries
+*.exe
+*.dll
+*.so
+*.dylib
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Node (in case you later add Firebase functions or web tools)
+node_modules/
+npm-debug.log*
+
+# ======================
+# ✅ Flutter Launcher Icons
+# ======================
+# Keep generated icons out of version control (optional)
+android/app/src/main/res/mipmap-*/
+ios/Runner/Assets.xcassets/AppIcon.appiconset/*
