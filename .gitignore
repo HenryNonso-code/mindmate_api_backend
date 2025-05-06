@@ -1,15 +1,23 @@
-# Byte-compiled / optimized / DLL files
+# 🔹 Python bytecode and compiled files
 __pycache__/
-*.py[cod]
+*.pyc
 *.pyo
+*.py[cod]
 
-# Environment
+# 🔹 Editor swap files
+*.swp
+
+# 🔹 Environment files (secrets)
 .env
 
-# Deployment artifacts
+# 🔹 OS/misc cleanup artifacts
+del
+rmdir
+
+# 🔹 Deployment and dev artifacts
 backup_files/
 dev_tools/
 
-# IDE/Editor specific (optional)
+# 🔹 IDE/editor-specific settings
 .vscode/
 *.log
