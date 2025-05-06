@@ -1,0 +1,43 @@
+name: mindmate_ai
+description: A mental health affirmation app powered by Gemini AI.
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.1.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+  flutter_native_splash: ^2.3.5
+  flutter_launcher_icons: ^0.13.1
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/app_icon.png
+    - assets/logo.png
+    - assets/branding.png
+
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/logo.png
+  branding: assets/branding.png
+  android: true
+  ios: true
+  web: false
+  fullscreen: true
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: assets/app_icon.png
+  min_sdk_android: 21
