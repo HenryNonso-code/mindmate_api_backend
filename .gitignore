@@ -1,0 +1,15 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Environment
+.env
+
+# Deployment artifacts
+backup_files/
+dev_tools/
+
+# IDE/Editor specific (optional)
+.vscode/
+*.log
