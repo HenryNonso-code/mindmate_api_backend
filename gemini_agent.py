@@ -1,19 +1,28 @@
-import google.generativeai as genai
 import os
+import google.generativeai as genai
 from dotenv import load_dotenv
 
-# Load the .env file and configure Gemini API
+# Load environment variables (for local dev)
 load_dotenv()
-genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+
+# Prefer GOOGLE_API_KEY or fallback to GEMINI_API_KEY
+api_key = os.getenv("GOOGLE_API_KEY") or os.getenv("GEMINI_API_KEY")
+
+# Raise error if missing
+if not api_key:
+    raise ValueError("❌ No API key found. Set GOOGLE_API_KEY in Render or GEMINI_API_KEY in .env.")
+
+# Configure Gemini
+genai.configure(api_key=api_key)
 
 def generate_affirmation(mood: str) -> str:
-    model = genai.GenerativeModel("models/gemma-3-27b-it")
+    model = genai.GenerativeModel("gemini-1.5-pro-latest")  # ✅ Paste here
+
     prompt = f"Give me only a short, clear affirmation (1–2 lines) for someone who feels {mood.lower()}."
-
     response = model.generate_content(prompt)
-    raw = response.text.strip()
 
-    # Clean and extract affirmation
+    # Clean and return
+    raw = response.text.strip()
     cleaned = (
         raw.replace('\n', ' ')
            .replace('\\', '')
@@ -21,8 +30,6 @@ def generate_affirmation(mood: str) -> str:
            .replace('*', '')
            .strip(" “”\"'")
     )
-
-    # Remove preamble if present
     if ":" in cleaned:
         cleaned = cleaned.split(":", 1)[-1].strip()
 
