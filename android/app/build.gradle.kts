@@ -1,15 +1,14 @@
-import java.util.Properties
-
 plugins {
     id("com.android.application")
     id("kotlin-android")
+    // Flutter plugin must come after Android/Kotlin plugins
     id("dev.flutter.flutter-gradle-plugin")
 }
 
 android {
     namespace = "com.nonsoapps.mindmate_app"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+    ndkVersion = "27.0.12077973" // ✅ Required for flutter_native_splash
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -17,11 +16,11 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
+        jvmTarget = "11"
     }
 
     defaultConfig {
-        applicationId = "com.nonsopps.mindmate_app"
+        applicationId = "com.nonsoapps.mindmate_app"
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
@@ -30,18 +29,15 @@ android {
 
     signingConfigs {
         create("release") {
-            val keystoreProperties = Properties().apply {
-                load(File(rootDir, "key.properties").inputStream())
-            }
-            storeFile = file(keystoreProperties["storeFile"] as String)
-            storePassword = keystoreProperties["storePassword"] as String
-            keyAlias = keystoreProperties["keyAlias"] as String
-            keyPassword = keystoreProperties["keyPassword"] as String
+            storeFile = file("mindmate-key.jks") // ✅ Corrected path
+            storePassword = "Jmindmate2025"                  // ✅ Real password
+            keyAlias = "mindmate_key"                        // ✅ Alias used during creation
+            keyPassword = "Jmindmate2025"                    // ✅ Same as store password
         }
     }
 
     buildTypes {
-        getByName("release") {
+        release {
             signingConfig = signingConfigs.getByName("release")
             isMinifyEnabled = false
             isShrinkResources = false

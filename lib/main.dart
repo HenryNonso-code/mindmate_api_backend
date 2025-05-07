@@ -91,7 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final url = '$apiUrl/affirmation?mood=$mood';
 
     try {
-      final response = await http.get(Uri.parse(url)).timeout(const Duration(seconds: 10));
+      final response = await http.get(Uri.parse(url)).timeout(const Duration(seconds: 30));
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
         final affirmation = data['affirmation'];

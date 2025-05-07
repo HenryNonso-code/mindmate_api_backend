@@ -1,14 +1,30 @@
+import os
+import logging
+from dotenv import load_dotenv
 from fastapi import FastAPI, Query
 from fastapi.responses import JSONResponse
 from sqlalchemy.orm import Session
 from gemini_agent import generate_affirmation
 from journal_db import SessionLocal, JournalEntry
-import logging
 
+# ----------------------
+# Load environment variables
+# ----------------------
+load_dotenv()
+
+google_creds = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
+if not google_creds or not os.path.exists(google_creds):
+    raise RuntimeError(f"❌ GOOGLE_APPLICATION_CREDENTIALS not set or file not found at: {google_creds}")
+
+# ----------------------
 # Enable logging
+# ----------------------
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+# ----------------------
+# FastAPI setup
+# ----------------------
 app = FastAPI(title="MindMate AI")
 
 @app.get("/")
@@ -19,7 +35,6 @@ def read_root():
 def get_affirmation(mood: str = Query(..., description="Your current mood")):
     try:
         logger.info(f"Received mood: {mood}")
-
         affirmation = generate_affirmation(mood)
         logger.info(f"Generated affirmation: {affirmation}")
 
@@ -35,7 +50,10 @@ def get_affirmation(mood: str = Query(..., description="Your current mood")):
         }
     except Exception as e:
         logger.error(f"Error in /affirmation: {str(e)}")
-        return JSONResponse(content={"error": "Internal Server Error", "details": str(e)}, status_code=500)
+        return JSONResponse(
+            content={"error": "Internal Server Error", "details": str(e)},
+            status_code=500
+        )
 
 @app.get("/journal")
 def read_journal():
@@ -57,4 +75,7 @@ def read_journal():
         return JSONResponse(content=data)
     except Exception as e:
         logger.error(f"Error in /journal: {str(e)}")
-        return JSONResponse(content={"error": "Internal Server Error", "details": str(e)}, status_code=500)
+        return JSONResponse(
+            content={"error": "Internal Server Error", "details": str(e)},
+            status_code=500
+        )
