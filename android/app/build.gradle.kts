@@ -29,10 +29,10 @@ android {
 
     signingConfigs {
         create("release") {
-            storeFile = file("keystore.jks") // 🔒 Replace with your .jks file
-            storePassword = "your-store-password" // 🔐 Replace
-            keyAlias = "your-key-alias"           // 🔐 Replace
-            keyPassword = "your-key-password"     // 🔐 Replace
+            storeFile = file("mindmate-key.jks") // ✅ Corrected path
+            storePassword = "Jmindmate2025"                  // ✅ Real password
+            keyAlias = "mindmate_key"                        // ✅ Alias used during creation
+            keyPassword = "Jmindmate2025"                    // ✅ Same as store password
         }
     }
 
