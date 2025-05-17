@@ -6,11 +6,11 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Get Gemini API key
-api_key = os.getenv("GOOGLE_API_KEY")
+api_key = os.getenv("GEMINI_API_KEY")
 
 # Validate
 if not api_key:
-    raise ValueError("❌ Missing GOOGLE_API_KEY in environment variables")
+    raise ValueError("❌ Missing GEMINI_API_KEY in environment variables")
 
 # Configure Gemini
 genai.configure(api_key=api_key)
