@@ -11,10 +11,7 @@ from journal_db import SessionLocal, JournalEntry
 # Load environment variables
 # ----------------------
 load_dotenv()
-
-google_creds = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
-if not google_creds or not os.path.exists(google_creds):
-    raise RuntimeError(f"❌ GOOGLE_APPLICATION_CREDENTIALS not set or file not found at: {google_creds}")
+logging.info("✅ Environment variables loaded")
 
 # ----------------------
 # Enable logging
