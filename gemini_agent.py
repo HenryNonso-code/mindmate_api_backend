@@ -17,7 +17,7 @@ genai.configure(api_key=api_key)
 
 # Generate mood-based affirmation
 def generate_affirmation(mood: str) -> str:
-    model = genai.GenerativeModel("gemini-1.5-pro-latest")
+    model = genai.GenerativeModel("gemini-1.5-flash")
     prompt = f"Give me only a short, clear affirmation (1–2 lines) for someone who feels {mood.lower()}."
     response = model.generate_content(prompt)
 
