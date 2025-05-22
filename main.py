@@ -25,8 +25,8 @@ logger = logging.getLogger(__name__)
 # ----------------------
 app = FastAPI(title="MindMate AI")
 
-# ✅ Mount the /public directory to serve static files like app-ads.txt
-app.mount("/", StaticFiles(directory="public", html=True), name="static")
+# ✅ Mount /public to /static so it won't conflict with /
+app.mount("/static", StaticFiles(directory="public"), name="static")
 
 @app.get("/")
 def read_root():
