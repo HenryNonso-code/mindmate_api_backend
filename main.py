@@ -1,3 +1,4 @@
+from fastapi.staticfiles import StaticFiles
 import os
 import logging
 from dotenv import load_dotenv
@@ -23,6 +24,9 @@ logger = logging.getLogger(__name__)
 # FastAPI setup
 # ----------------------
 app = FastAPI(title="MindMate AI")
+
+# ✅ Mount the /public directory to serve static files like app-ads.txt
+app.mount("/", StaticFiles(directory="public", html=True), name="static")
 
 @app.get("/")
 def read_root():
@@ -76,3 +80,11 @@ def read_journal():
             content={"error": "Internal Server Error", "details": str(e)},
             status_code=500
         )
+
+# ----------------------
+# Uvicorn runner for Render (essential)
+# ----------------------
+if __name__ == "__main__":
+    import uvicorn
+    port = int(os.environ.get("PORT", 10000))
+    uvicorn.run("main:app", host="0.0.0.0", port=port, reload=False)

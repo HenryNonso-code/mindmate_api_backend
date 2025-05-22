@@ -1,38 +1,21 @@
-plugins {
-    id("com.android.application")
-    id("kotlin-android")
-    // Flutter plugin must come after Android/Kotlin plugins
-    id("dev.flutter.flutter-gradle-plugin")
-}
-
 android {
     namespace = "com.nonsoapps.mindmate_app"
-    compileSdk = flutter.compileSdkVersion
-    ndkVersion = "27.0.12077973" // ✅ Required for flutter_native_splash
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-
-    kotlinOptions {
-        jvmTarget = "11"
-    }
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.nonsoapps.mindmate_app"
-        minSdk = flutter.minSdkVersion
-        targetSdk = flutter.targetSdkVersion
-        versionCode = flutter.versionCode
-        versionName = flutter.versionName
+        minSdk = 21
+        targetSdk = 34
+        versionCode = 2
+        versionName = "1.0.1"
     }
 
     signingConfigs {
         create("release") {
-            storeFile = file("mindmate-key.jks") // ✅ Corrected path
-            storePassword = "Jmindmate2025"                  // ✅ Real password
-            keyAlias = "mindmate_key"                        // ✅ Alias used during creation
-            keyPassword = "Jmindmate2025"                    // ✅ Same as store password
+            storeFile = file("mindmate-key.jks")
+            storePassword = "Jmindmate2025"
+            keyAlias = "mindmate"
+            keyPassword = "Jmindmate2025"
         }
     }
 
@@ -47,8 +30,13 @@ android {
             )
         }
     }
-}
 
-flutter {
-    source = "../.."
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+
+    kotlinOptions {
+        jvmTarget = "11"
+    }
 }
